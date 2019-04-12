@@ -3,19 +3,22 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
-import java.nio.channels.ByteChannel;
-import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
-import static java.nio.ByteBuffer.allocate;
-import static java.nio.file.StandardOpenOption.READ;
+import static org.junit.Assert.assertTrue;
 
 public class FileOperations {
     private static long reads=0;
+
+    public IndexesHolder getHolder() {
+        return this.holder;
+    }
+
     IndexesHolder holder = new IndexesHolder();
     RandomAccessFile raf ;
 
@@ -90,7 +93,7 @@ public class FileOperations {
 
     }
 
-    public void getHolder(Path file) throws IOException {
+    public void fillHolder(Path file) throws IOException {
 
         raf.seek(0);
         String tmpsSTR;
@@ -112,18 +115,27 @@ public class FileOperations {
 
 
         LinkedList<ArrayValues> tmpArr = holder.getArr();
-        for(int i=0;i<tmpArr.size();i++)
+        raf.seek(tmpArr.get(0).getStartOffset());
+        String firstElem = raf.readLine();
+        for(int i=1;i<tmpArr.size();i++)
         {
-            raf.seek(tmpArr.get(i).getStartOffset());
-            System.out.println(raf.readLine());
-        }
 
+            raf.seek(tmpArr.get(i).getStartOffset());
+            String second = raf.readLine();
+            assertTrue ("WRONG SORTING" ,firstElem.compareTo(second)<0);
+
+            System.out.println(second);
+            firstElem=second;
+        }
+        System.out.println("Arrsize="+tmpArr.size());
     }
 
     public void runSort() {
         InsertionSort toSort = new InsertionSort(holder);
         ShSorter toShSortt=new ShSorter(holder);
         System.out.println("Readings="+toShSortt.getGaps());
+        System.out.println("Sizeof"+ (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
+
         toShSortt.start(holder);
     //    this.holder=toSort.start();
         System.out.println("Readings="+reads);
@@ -143,6 +155,15 @@ public class FileOperations {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+    public HashMap<Integer, String> getMapofStrings(LinkedList<Integer> points) {
+        for (int i=0;i<points.size();i++)
+        {
+
+        }
+
         return null;
     }
 }

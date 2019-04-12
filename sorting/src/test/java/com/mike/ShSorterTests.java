@@ -3,10 +3,8 @@ package com.mike;
 
 import org.junit.Test;
 
-import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedList;
 
@@ -31,6 +29,32 @@ public class ShSorterTests {
 //        ShSorter underTest=new ShSorter(new IndexesHolder());
 //        LinkedList result = underTest.countGap(1000000);
 //        assertThat(result.getLast(),is(262913));
+//
+//    }
+
+//    @Test
+//    public void checkthatArraySortedCorrectly()
+//    {
+//         LinkedList<ArrayValues> arrTotest=new LinkedList<>();
+//
+//        FileOperations s = null;
+//        try {
+//            s = new FileOperations("src/main/resources/tets.csv");
+//        Path arr = s.getArrayOfStrings(10, 20);
+//        s.fillHolder(arr);
+//        s.runSort();
+//        arrTotest=s.getHolder().getArr();
+//    //    s.outSorted();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        for (int i=0;i<arrTotest.size()-1;i++)
+//        {
+//            arrTotest.get(i).
+//        }
 //
 //    }
 

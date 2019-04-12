@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.LinkedList;
+import java.util.Map;
 
 
 public class InsertionSort {
@@ -69,25 +70,28 @@ public class InsertionSort {
 
 
     public IndexesHolder start2() {
+        Map<Integer,String> map=s.getMapofStrings(points);
         int temp, j;
-
+System.out.println("start2 begin"+this.indexes.getArr().size());
         for (int i = 0; i < points.size() - 1; i++) {
-            String valI = s.gevaValueofElement(indexes.getArr().get(points.get(i)));
-            String val_Iplus1 = s.gevaValueofElement(indexes.getArr().get(points.get(i+1)));
+            String valI = s.gevaValueofElement(this.indexes.getArr().get(points.get(i)));
+            String val_Iplus1 = s.gevaValueofElement(this.indexes.getArr().get(points.get(i+1)));
             if (compareAndCount(valI,val_Iplus1) > 0) {
 
-                ArrayValues tmpVal = indexes.getArr().get(points.get(i+1));
+                ArrayValues tmpVal = this.indexes.getArr().get(points.get(i+1));
 
                 j = i;
-                while (j > 0 && (compareAndCount(s.gevaValueofElement(indexes.getArr().get(points.get(j-1))),val_Iplus1) > 0)) {
+                while (j > 0 && (compareAndCount(s.gevaValueofElement(this.indexes.getArr().get(points.get(j-1))),val_Iplus1) > 0)) {
                     j--;
                 }
-                indexes.getArr().remove(points.get(i+1));
-                indexes.getArr().add(points.get(j), tmpVal);
+                ArrayValues rem = this.indexes.getArr().remove((int) points.get(i + 1));
+                 this.indexes.getArr().add(points.get(j), tmpVal);
+ //               System.out.println("remoove="+ rem);
             }
 
         }
         System.out.println("Comparision="+ comparings);
+        System.out.println("start2 end"+this.indexes.getArr().size());
         return this.indexes;
 
     }

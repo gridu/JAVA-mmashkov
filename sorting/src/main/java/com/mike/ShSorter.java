@@ -34,9 +34,11 @@ public class ShSorter {
 
 
     public void start(IndexesHolder holder) {
+        long before = System.currentTimeMillis();
         do {
+
             for (int i = 0; i < gaps.getLast(); i++) {
-                LinkedList<Integer> points = generateListForsort(indexes.getArr().size(), i);
+                LinkedList<Integer> points = generateListForsort(indexes.getArr().size()-1, i);
                 System.out.println(points);
                 //   new InsertionSort(indexes, gaps.getLast())
                 InsertionSort toSort = new InsertionSort(holder,points);
@@ -44,7 +46,9 @@ public class ShSorter {
             }
             gaps.removeLast();
 
-        }while(gaps.size()>0);
+        }while(gaps.size()>1);
+        long after = System.currentTimeMillis()-before;
+        System.out.println("Time="+after);
     }
 
     private LinkedList<Integer> generateListForsort(int size, int i) {

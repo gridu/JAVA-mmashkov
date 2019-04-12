@@ -2,7 +2,6 @@ package com.mike;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class SortStarter {
     //new Paths("src/main/resources/strings.csv");
@@ -25,8 +24,8 @@ public class SortStarter {
         fileToSort=root+defFile;
         System.out.println("begin");
         FileOperations s = new FileOperations(fileToSort);
-        Path arr = s.getArrayOfStrings(1000, 20);
-        s.getHolder(arr);
+        Path arr = s.getArrayOfStrings(100000, 5);
+        s.fillHolder(arr);
         s.runSort();
         s.outSorted();
 
