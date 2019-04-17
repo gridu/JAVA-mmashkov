@@ -40,8 +40,8 @@ public class ShSorterTests {
 //        FileOperations s = null;
 //        try {
 //            s = new FileOperations("src/main/resources/tets.csv");
-//        Path arr = s.getArrayOfStrings(10, 20);
-//        s.fillHolder(arr);
+//        Path arr = s.generateFileOfStrings(10, 20);
+//        s.getIndexesHoderFromFile(arr);
 //        s.runSort();
 //        arrTotest=s.getHolder().getArr();
 //    //    s.outSorted();

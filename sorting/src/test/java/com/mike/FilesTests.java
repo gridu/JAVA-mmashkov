@@ -20,7 +20,7 @@ public class FilesTests {
         int lineCount=0;
         FileOperations r = new FileOperations("src/main/resources/strings.csv");
         InputStreamReader is;
-        Path file = r.getArrayOfStrings(200, 0);
+        Path file = r.generateFileOfStrings(200, 0);
         BufferedReader bw = Files.newBufferedReader(file);
         String newLine;
         while((newLine=bw.readLine())!=null)
@@ -38,7 +38,7 @@ public class FilesTests {
         int lineCount=0;
         FileOperations r = new FileOperations("src/main/resources/strings.csv");
         InputStreamReader is;
-        Path file = r.getArrayOfStrings(0, 10);
+        Path file = r.generateFileOfStrings(0, 10);
         BufferedReader bw = Files.newBufferedReader(file);
         String newLine;
         while((newLine=bw.readLine())!=null)
@@ -56,7 +56,7 @@ public class FilesTests {
         int lineCount=0;
         FileOperations r = new FileOperations("src/main/resources/strings.csv");
         InputStreamReader is;
-        Path file = r.getArrayOfStrings(200, 10);
+        Path file = r.generateFileOfStrings(200, 10);
 
         BufferedReader bw = Files.newBufferedReader(file);
         String newLine;

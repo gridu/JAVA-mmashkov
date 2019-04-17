@@ -24,13 +24,11 @@ public class SortStarter {
         fileToSort=root+defFile;
         System.out.println("begin");
         FileOperations s = new FileOperations(fileToSort);
-        Path arr = s.getArrayOfStrings(100000, 5);
-        s.fillHolder(arr);
-        s.runSort();
-        s.outSorted();
+        Path faileWithData = s.generateFileOfStrings(50000, 500);
+        IndexesHolder arrToSort=s.getIndexesHoderFromFile(faileWithData);
+        ShSorter sorter = new ShSorter(arrToSort);
+        sorter.runSort();
 
-        //1)Generate test file / load
-        //2)call sorter(FileStream)
-        //3)
+
     }
 }
